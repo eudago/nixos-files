@@ -9,6 +9,10 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+    ./waybar.nix
+    ./gtk.nix
+    ./alacritty.nix
+    ./rofi.nix
   ];
 
   nixpkgs = {
@@ -41,9 +45,71 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
+  programs.home-manager.enable = true;
+  home.packages = with pkgs; [
+	_1password-gui
+	bat
+	fzf
+	ripgrep
+	nerdfonts
+	jq
+	starship
+	tree
+	exa
+	mako
+	pciutils
+	swaybg
+	swaylock-effects
+	pamixer
+	pavucontrol
+	pulseaudio
+	inputs.hyprwm-contrib.packages.${system}.grimblast
+	dracula-theme
+	xdg-desktop-portal-gtk
+	gsettings-desktop-schemas
+	spotify
+	wlogout
+	glib
+	feh
+	];
+  
+	home.sessionVariables = {
+		QT_QPA_PLATFORM = "wayland";
+		MOZ_ENABLE_WAYLAND=1;
+		GDK_BACKEND="wayland";
+		EDITOR="nvim";
+	};
+	home.shellAliases = {
+		l = "exa";
+		ls = "exa";
+		cat = "bat";
+	};
+
+	programs.zsh = {
+		enable = true;
+		initExtra = ''
+			${pkgs.dt-shell-color-scripts}/bin/colorscript -e 22
+			'';
+	};
+
+	programs.zsh.oh-my-zsh= {
+		enable = true;
+		plugins = ["git" "python" "docker" "fzf"];
+		theme = "dpoggi";
+	};
+
+	wayland.windowManager.hyprland = {
+		enable = true;
+		extraConfig = (import ./hyprland.nix); 
+	};
+
+	programs.waybar.package = pkgs.waybar.overrideAttrs (oa: {
+		mesonFlags = (oa.mesonFlags or  [ ]) ++ [ "-Dexperimental=true" ];
+	});	
 
   # Enable home-manager and git
-  programs.home-manager.enable = true;
+	programs.firefox.enable = true;
+
   programs.git.enable = true;
 
   # Nicely reload system units when changing configs

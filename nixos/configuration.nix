@@ -45,11 +45,11 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -97,6 +97,7 @@
     description = "Eudald Dachs";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      home-manager
       firefox
       neovim
       wget
@@ -115,7 +116,10 @@
     vscode
     vim
     git
+    python3Minimal
   ];
+
+  environment.variables.WLR_NO_HARDWARE_CURSORS = "1";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -144,4 +148,8 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
 
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
 }

@@ -17,6 +17,7 @@
       # build with your own instance of nixpkgs
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprwm-contrib.url = "github:hyprwm/contrib";
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
@@ -33,7 +34,8 @@
           ./nixos/configuration.nix
           hyprland.nixosModules.default
           { 
-            programs.hyprland.enable = true; 
+            programs.hyprland.enable = true;
+            programs.sway.enable = true;
           }
         ];
       };
@@ -46,7 +48,11 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
         # > Our main home-manager configuration file <
-        modules = [ ./home-manager/home.nix ];
+        modules = [ 
+          ./home-manager/home.nix
+          hyprland.homeManagerModules.default
+          {wayland.windowManager.hyprland.enable = true;}
+        ];
       };
     };
   };
