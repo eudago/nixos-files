@@ -13,6 +13,7 @@
     ./gtk.nix
     ./alacritty.nix
     ./rofi.nix
+	./wofi/wofi.nix
   ];
 
   nixpkgs = {

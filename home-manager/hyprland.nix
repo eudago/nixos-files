@@ -4,7 +4,9 @@ exec-once=waybar
 exec=swaybg -i ${./wallpaper.jpg} --mode fill
 exec-once=mako
 exec-once=swayidle -w timeout 300 'swaylock -f -c 000000'
-bind=SUPER,D,exec, rofi -show drun
+
+bind=SUPER,x,exec,wofi -S drun -x 10 -y 10 -W 25% -H 60%
+bind=SUPER,d,exec,wofi -S run
 bind=SUPER,RETURN,exec,alacritty
 bind=SUPERSHIFT,Q,exit
 bind=SUPER,C,killactive
@@ -98,6 +100,10 @@ bind=SUPERSHIFT,h,movewindow,l
 bind=SUPERSHIFT,l,movewindow,r
 bind=SUPERSHIFT,k,movewindow,u
 bind=SUPERSHIFT,j,movewindow,d
+
+bindm=SUPER,mouse:272,movewindow
+bindm=SUPER,mouse:273,resizewindow
+bind=SUPERSHIFT,f,fullscreen
 
 bind=SUPER,1,workspace,1
 bind=SUPER,2,workspace,2

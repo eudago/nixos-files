@@ -88,7 +88,7 @@
 
             "custom/menu" = {
               "format" = "";
-              "on-click" = "rofi -show drun";
+              "on-click" = "wofi -S drun -x 10 -y 10 -W 25% -H 60%";
             };
 
             "custom/hostname" = {
