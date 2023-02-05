@@ -6,7 +6,8 @@ exec-once=mako
 exec-once=swayidle -w timeout 300 'swaylock -f -c 000000'
 
 bind=SUPER,x,exec,wofi -S drun -x 10 -y 10 -W 25% -H 60%
-bind=SUPER,d,exec,wofi -S run
+bind=SUPER,d,exec,rofi -show drun
+bind=SUPER,e,exec,rofi -show emoji
 bind=SUPER,RETURN,exec,alacritty
 bind=SUPERSHIFT,Q,exit
 bind=SUPER,C,killactive
@@ -52,7 +53,7 @@ decoration {
 blurls=waybar
 
 animations {
-    enabled=1
+    enabled=1z
     bezier=overshot,0.13,0.99,0.29,1.1
     animation=windows,1,4.3,overshot,popin
     animation=fade,1,10,default

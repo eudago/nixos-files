@@ -1,7 +1,11 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{ inputs, lib, config, pkgs, ... }: {
+{ inputs, lib, config, pkgs, ... }: 
+
+let theme = import ../theme/theme.nix { };
+	
+in {
   # You can import other home-manager modules here
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
@@ -12,7 +16,10 @@
     ./waybar.nix
     ./gtk.nix
     ./alacritty.nix
-    ./rofi.nix
+    (import ./rofi/rofi.nix {
+      inherit config pkgs theme;
+      package = pkgs.rofi-wayland.override { plugins = [ pkgs.rofi-emoji ]; };
+    })
 	./wofi/wofi.nix
   ];
 
