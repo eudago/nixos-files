@@ -39,4 +39,5 @@
   hardware.video.hidpi.enable = lib.mkDefault true;
   hardware.enableAllFirmware = true;
   hardware.nvidia.modesetting.enable = true;
+  hardware.bluetooth.enable = true;
 }

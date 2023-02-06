@@ -21,6 +21,7 @@ in {
       package = pkgs.rofi-wayland.override { plugins = [ pkgs.rofi-emoji ]; };
     })
 	./wofi/wofi.nix
+	./podman.nix
   ];
 
   nixpkgs = {

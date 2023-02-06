@@ -62,8 +62,8 @@
   hardware.opengl.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-
-
+  # bluetooth
+  services.blueman.enable = true;
 
   # Configure console keymap
   console.keyMap = "es";
@@ -117,6 +117,9 @@
     vim
     git
     python3Minimal
+    podman
+    podman-compose
+    gcc
   ];
 
   environment.variables.WLR_NO_HARDWARE_CURSORS = "1";

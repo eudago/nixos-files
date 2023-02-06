@@ -85,6 +85,9 @@ windowrule = float, title:wlogout
 
 windowrule=opacity 0.88,alacritty
 
+bind=SUPER,U,exec,hyprctl keyword input:kb_layout us
+bind=SUPER,E,exec,hyprctl keyword input:kb_layout es
+
 bind=SUPER,j,movefocus,d
 bind=SUPER,k,movefocus,u
 
