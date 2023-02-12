@@ -95,13 +95,15 @@
   users.users.eudago = {
     isNormalUser = true;
     description = "Eudald Dachs";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       home-manager
       firefox
       neovim
       wget
       neofetch
+      postman
+      xfce.thunar
     ];
   };
 
@@ -117,12 +119,22 @@
     vim
     git
     python3Minimal
-    podman
-    podman-compose
+    docker
+    docker-compose
     gcc
+    nodejs
   ];
 
   environment.variables.WLR_NO_HARDWARE_CURSORS = "1";
+
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "nvidia";
+    XDG_SESSION_TYPE = "wayland";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDER_LIBRARY_NAME = "nvidia";
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

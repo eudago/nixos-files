@@ -33,8 +33,15 @@
         modules = [ 
           ./nixos/configuration.nix
           hyprland.nixosModules.default
-          { 
-            programs.hyprland.enable = true;
+          {
+            programs.hyprland = { # or wayland.windowManager.hyprland
+              enable = true;
+              xwayland = {
+                enable = true;
+                hidpi = true;
+              };
+              nvidiaPatches = false;
+            };
             programs.sway.enable = true;
           }
         ];
